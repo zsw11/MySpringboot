@@ -1,40 +1,38 @@
-
-
 sharding:
   jdbc:
     dataSource:
       names: db-test0,db-test1,db-test2
-      # ÅäÖÃÖ÷¿â
+      # é…ç½®ä¸»åº“
       db-test0: #org.apache.tomcat.jdbc.pool.DataSource
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
         url: jdbc:mysql://{master-host}:3306/cool?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
         username: root
-        password:
-        #×î´óÁ¬½ÓÊı
+        password: 123456
+        #æœ€å¤§è¿æ¥æ•°
         maxPoolSize: 20
-      db-test1: # ÅäÖÃµÚÒ»¸ö´Ó¿â
+      db-test1: # é…ç½®ç¬¬ä¸€ä¸ªä»åº“
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
         url: jdbc:mysql://{slave1-host}:3306/cool?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT
         username: root
-        password:
+        password: 123456
         maxPoolSize: 20
-      db-test2: # ÅäÖÃµÚ¶ş¸ö´Ó¿â
+      db-test2: # é…ç½®ç¬¬äºŒä¸ªä»åº“
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
         url: jdbc:mysql://{slave2-host}:3306/cool?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT
         username: root
-        password:
+        password: 123456
         maxPoolSize: 20
     config:
-      masterslave: # ÅäÖÃ¶ÁĞ´·ÖÀë
-        load-balance-algorithm-type: round_robin # ÅäÖÃ´Ó¿âÑ¡Ôñ²ßÂÔ£¬Ìá¹©ÂÖÑ¯ÓëËæ»ú£¬ÕâÀïÑ¡ÔñÓÃÂÖÑ¯//random Ëæ»ú //round_robin ÂÖÑ¯
+      masterslave: # é…ç½®è¯»å†™åˆ†ç¦»
+        load-balance-algorithm-type: round_robin # é…ç½®ä»åº“é€‰æ‹©ç­–ç•¥ï¼Œæä¾›è½®è¯¢ä¸éšæœºï¼Œè¿™é‡Œé€‰æ‹©ç”¨è½®è¯¢//random éšæœº //round_robin è½®è¯¢
         name: db1s2
         master-data-source-name: db-test0
         slave-data-source-names: db-test1,db-test2
     props:
-      sql: # ¿ªÆôSQLÏÔÊ¾£¬Ä¬ÈÏÖµ: false£¬×¢Òâ£º½öÅäÖÃ¶ÁĞ´·ÖÀëÊ±²»»á´òÓ¡ÈÕÖ¾£¡£¡£¡
+      sql: # å¼€å¯SQLæ˜¾ç¤ºï¼Œé»˜è®¤å€¼: falseï¼Œæ³¨æ„ï¼šä»…é…ç½®è¯»å†™åˆ†ç¦»æ—¶ä¸ä¼šæ‰“å°æ—¥å¿—ï¼ï¼ï¼
         show: true
 
 server.port: 8085

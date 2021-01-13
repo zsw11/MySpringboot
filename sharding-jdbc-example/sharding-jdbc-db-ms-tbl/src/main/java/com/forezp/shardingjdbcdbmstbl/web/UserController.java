@@ -6,9 +6,11 @@ import com.forezp.shardingjdbcdbmstbl.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping("/usersList")
     public Object list() {
         List<User> list= userService.list();
         //Collections.sort(list);
@@ -45,5 +47,11 @@ public class UserController {
     public Object delete() {
     userService.deleteAll();
         return "ok";
+    }
+
+    @PostMapping("/deleteById")
+    public Object deleteByIds(@RequestParam(value = "ids")Integer[] ids){
+        List<Integer> integers = Arrays.asList(ids);
+        return userService.deleteByIds(integers);
     }
 }

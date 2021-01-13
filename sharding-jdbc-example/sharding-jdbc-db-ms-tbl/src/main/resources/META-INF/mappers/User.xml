@@ -27,4 +27,11 @@
         delete from user;
     </delete>
 
+    <delete id="deleteByIds" parameterType="list">
+        delete from user where id in
+        <foreach item="id" collection="ids" index="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
 </mapper>

@@ -13,4 +13,6 @@ public interface UserService {
     List<User> list();
 
     void deleteAll();
+
+    Integer deleteByIds(List<Integer> ids);
 }
